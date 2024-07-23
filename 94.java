@@ -14,20 +14,25 @@
  * }
  */
 class Solution {
-    List<Integer> ans = new LinkedList<>();
+    
 
     public List<Integer> inorderTraversal(TreeNode root) {
-
-        middle(root);
+        List<Integer> ans = new LinkedList<>();
+        Deque<TreeNode> stack = new LinkedList<>();
+        if(root==null)
+            return ans;
+        TreeNode node  = root;
+        while(!stack.isEmpty()||node!=null){
+            while(node!=null){
+                stack.push(node);
+                node=node.left;
+            }
+            node = stack.pop();
+            ans.add(node.val);
+            node=node.right;
+        }
         return ans;
 
     }
 
-    private void middle(TreeNode node) {
-        if(node==null)
-            return;
-        middle(node.left);
-        ans.add(node.val);
-        middle(node.right);
-    }
 }
