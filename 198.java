@@ -14,3 +14,24 @@ class Solution {
         return Math.max(dp[nums.length],dp[nums.length-1]);
     }
 }
+
+// class Solution {
+//     private int[] nums,memo;
+//     public int rob(int[] nums) {
+//         this.nums = nums;
+//         int n = nums.length;
+//         memo = new int[n];
+//         Arrays.fill(memo,-1);
+//         return dfs(n-1);
+//     }
+//     private int dfs(int i){
+//         if(i<0)
+//             return 0;
+//         if(memo[i]!=-1){
+//             return memo[i];
+//         }
+//         int ans = Math.max(dfs(i-1),dfs(i-2)+nums[i]);
+//         memo[i]=ans;
+//         return ans;
+//     }
+// }
