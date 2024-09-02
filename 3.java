@@ -43,3 +43,31 @@ class Solution {
     }
 
 }
+
+// 第二次重做双指针做法
+class Solution {
+    /**
+        标准的滑动窗口的题目
+        滑动窗口的实现方法之一是双指针，在这里双指针是一个指针不动，另一个一直从左往右
+        在右指针遍历的过程中，用while循环检验右指针指向的位置是否在已知集合中
+        如果在已知集合中，那么就需要左指针已知右移，并且弹出原有指针指向元素
+        如果不在已知集合中，那么就将右指针元素加入到已知集合中
+     */
+    public int lengthOfLongestSubstring(String S) {
+        char[] s = S.toCharArray();
+        int n = s.length;
+        int left = 0;
+        int ans = 0;
+        Set<Character> set = new HashSet<>();
+        for(int right=0;right<n;right++){
+            char c = s[right];
+            while(set.contains(c)){
+                set.remove(s[left]);
+                left++;
+            }
+            set.add(c);
+            ans = Math.max(ans,right-left+1);
+        }
+        return ans;
+    }
+}

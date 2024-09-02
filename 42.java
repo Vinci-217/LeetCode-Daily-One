@@ -42,3 +42,29 @@ class Solution {
         return res;
     }
 }
+
+// 第二次自己做，没做出来
+class Solution {
+    public int trap(int[] height) {
+        int left = 0;
+        int right = height.length-1;
+        int ans = 0;
+        int preMax = 0;
+        int sufMax = 0;
+
+        // 遍历的是每一条竖线，而不是面积
+
+        while(left<right){
+            // 求 前缀最大值 和 后缀最大值
+            preMax = Math.max(preMax,height[left]);
+            sufMax = Math.max(sufMax,height[right]);
+            // 左右最小长度的雨水量，减去黑条长度
+            ans += preMax < sufMax? preMax-height[left++] : sufMax-height[right--];
+        }
+
+
+
+        return ans;
+
+    }
+}

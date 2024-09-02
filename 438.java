@@ -31,3 +31,46 @@ class Solution {
 
     }
 }
+
+// 第二次的做法
+
+class Solution {
+    public List<Integer> findAnagrams(String S, String p) {
+        int left = 0;
+        char[] s = S.toCharArray();
+        int n = s.length;
+        List<Integer> ans = new ArrayList<>();
+        Map<Character, Integer> pCount = new HashMap<>();
+        Map<Character, Integer> windowCount = new HashMap<>();
+        if(s.length<p.length()){
+            return List.of();
+        }
+        for (char c : p.toCharArray()) {
+            pCount.put(c, pCount.getOrDefault(c, 0) + 1);
+        }
+        for (int i = 0; i < p.length(); i++) {
+            char c = s[i];
+            windowCount.put(c, windowCount.getOrDefault(c, 0) + 1);
+        }
+        if (windowCount.equals(pCount)) {
+            ans.add(left);
+        }
+        for (int right = p.length(); right < n; right++) {
+
+            windowCount.put(s[right], windowCount.getOrDefault(s[right], 0) + 1);
+            if (windowCount.get(s[left]) == 1) {
+                windowCount.remove(s[left]);
+            } else {
+                windowCount.put(s[left], windowCount.get(s[left]) - 1);
+            }
+            left++;
+            if (windowCount.equals(pCount)) {
+                ans.add(left);
+            }
+            
+            System.out.println("left=" + left + s[left]);
+            System.out.println("right=" + right + s[right]);
+        }
+        return ans;
+    }
+}
