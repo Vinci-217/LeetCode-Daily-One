@@ -22,3 +22,28 @@ class Solution {
 
     }
 }
+
+// 灵神更加容易记忆的做法
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+
+        int ans = 0;
+
+        int[] s = new int[nums.length+1];
+        for(int i = 0;i<nums.length;i++){
+            s[i+1] = s[i]+nums[i];
+        }
+
+        Map<Integer,Integer> cnt = new HashMap<>();
+        // 相当于枚举right
+        for(int n:s){
+            // 如果之前存在某个前缀和为n-k（相当于存在left）
+            ans +=cnt.getOrDefault(n-k,0);
+            // 给这个前缀和频率加一，相当于数组的cnt[i]++
+            cnt.merge(n,1,Integer::sum);
+        }
+
+        return ans;
+        
+    }
+}
