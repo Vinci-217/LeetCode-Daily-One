@@ -23,3 +23,27 @@ class Solution {
 
     }
 }
+
+// 第二次做的做法
+class Solution {
+    public int minSubArrayLen(int target, int[] nums) {
+        int ans = Integer.MAX_VALUE;
+        int left = 0;
+        int sum =0;
+        int length = 0;
+        for(int right = 0;right<nums.length;right++){
+            sum+=nums[right];
+            length++;
+            
+            while(sum>=target){
+                ans = Math.min(ans,length);
+                sum-=nums[left];
+                left++;
+                length--;
+            }
+        }
+        if(ans==Integer.MAX_VALUE)
+            return 0;
+        return ans;
+    }
+}
