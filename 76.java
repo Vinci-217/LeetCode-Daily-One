@@ -45,3 +45,46 @@ class Solution {
 
     }
 }
+
+// 第二次的做法：时间复杂度在于判断cover的时候
+
+class Solution {
+    public String minWindow(String S, String t) {
+        char[] s = S.toCharArray();
+        int m = s.length;
+        int ansLeft = -1; // 作用是保存下来子串
+        int ansRight = m;
+        int left = 0;
+        int[] cntS = new int[128]; // 频率统计根据 字符 的 asc码
+        int[] cntT = new int[128];
+        for(char c: t.toCharArray()){
+            cntT[c]++;
+        }
+        for(int right = 0;right<m;right++){
+            cntS[s[right]]++;
+            while(isCovered(cntS,cntT)){
+                if(right-left<ansRight-ansLeft){
+                    ansLeft = left;
+                    ansRight = right;
+                }
+                cntS[s[left++]]--;
+            }
+        }
+        return ansLeft < 0 ? "" :S.substring(ansLeft,ansRight+1);
+    }
+
+        private boolean isCovered(int[] cntS, int[] cntT) {
+        for (int i = 'A'; i <= 'Z'; i++) {
+            if (cntS[i] < cntT[i]) {
+                return false;
+            }
+        }
+        for (int i = 'a'; i <= 'z'; i++) {
+            if (cntS[i] < cntT[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+}
