@@ -57,3 +57,30 @@ class Solution {
         return pre;
     }
 }
+
+// 第三次递归方法
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        if(head==null||head.next==null){
+            return head;
+        }
+        // 保存我的下一个，让他继续递归
+        ListNode newHead = reverseList(head.next);
+        // 改变我
+        head.next.next = head;
+        head.next = null;
+        // 返回头指针
+        return newHead;
+
+    }
+}
