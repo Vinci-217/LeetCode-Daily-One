@@ -12,3 +12,20 @@ class Solution {
 
     }
 }
+
+// 第二次做：
+// 注意ans更新和minSum更新的顺序
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int ans = Integer.MIN_VALUE;
+        int preSum = 0;
+        int minSum = 0;
+        for(int n :nums){
+            preSum = preSum+n;
+            ans = Math.max(preSum-minSum,ans);
+            minSum = Math.min(minSum,preSum);
+        }
+        return ans;
+
+    }
+}
