@@ -71,3 +71,34 @@ class Solution {
         return ans;
     }
 }
+
+
+// 第三次重做做法，半小时做出来的
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int ans = 0;
+        int n = s.length();
+        int left = 0;
+        int right = left;
+        Map<Character,Integer> map = new HashMap<>();
+        while(right<n){
+            if(!map.containsKey(s.charAt(right))){
+                map.put(s.charAt(right),1);
+                right++;
+                continue;
+            }
+            if(map.containsKey(s.charAt(right))){
+                ans = Math.max(ans,right-left);
+                while(map.containsKey(s.charAt(right))){
+                    map.remove(s.charAt(left));
+                    left++;
+                }
+                map.put(s.charAt(right),1);
+                right++;
+            }
+        }
+        ans = Math.max(ans,right-left);
+        return ans;
+    }
+}
