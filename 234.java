@@ -59,3 +59,30 @@ class Solution {
         return s1.equals(s2);
     }
 }
+
+
+// 第二次做的方法
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        StringBuilder sb = new StringBuilder();
+        ListNode cur = head;
+        while(cur!=null){
+            sb.append(cur.val);
+            cur = cur.next;
+        }
+        String str = sb.toString();
+        if(str.equals(sb.reverse().toString()))
+            return true;
+        return false;
+    }
+}
