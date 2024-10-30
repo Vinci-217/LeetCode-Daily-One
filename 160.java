@@ -87,3 +87,21 @@ public class Solution {
         return pA;
     }
 }
+
+
+
+// 核心在于，要么AB相等，要么AB同时为null，所以在于A!=N
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode A = headA;
+        ListNode B = headB;
+
+
+        while(A!=B){
+            A = A==null?headB:A.next;
+            B = B==null?headA:B.next;
+        }
+        return A;
+
+    }
+}
