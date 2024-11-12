@@ -37,7 +37,7 @@ class Solution {
 
 }
 
-// 一个更好的解决方法
+// 一个更好的解决方法对节点的颜色进行标记，如果已经访问过就是2，否则为1
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
