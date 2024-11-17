@@ -27,3 +27,39 @@ class Solution {
         }
     }
 }
+
+
+// 第二次做法：我真是天才
+import java.util.ArrayList;
+import java.util.HashSet;
+
+class Solution {
+    private List<List<Integer>> ans = new ArrayList<>();
+    private List<Integer> path = new ArrayList<>();
+    private Set<Integer> set = new HashSet<>();
+    private int[] nums;
+
+    public List<List<Integer>> permute(int[] nums) {
+        this.nums = nums;
+        dfs();
+        return ans;
+    }
+
+    private void dfs(){
+        if(set.size()==nums.length){
+            ans.add(new ArrayList<>(path));
+            return;
+        }
+        for(int num:nums){
+            if(!set.contains(num)){
+                path.add(num);
+                set.add(num);
+                dfs();
+                path.remove(path.size()-1);
+                set.remove(num);
+            }
+        }
+    }
+
+    
+}
