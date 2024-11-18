@@ -35,3 +35,25 @@ class Solution {
 //         return ans;
 //     }
 // }
+
+// 第二次做法，统一写法
+class Solution {
+    private int[] nums;
+    private int[] memo;
+    public int rob(int[] nums) {
+        this.nums = nums;
+        memo = new int[nums.length];
+        Arrays.fill(memo,-1);
+        return dfs(nums.length-1);
+    }
+
+    private int dfs(int length){
+        if(length<0){
+            return 0;
+        }
+        if(memo[length]!=-1){
+            return memo[length];
+        }
+        return memo[length] = Math.max(dfs(length-1) , dfs(length-2)+nums[length]);
+    }
+}
