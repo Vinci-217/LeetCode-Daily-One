@@ -63,3 +63,69 @@ class Solution {
 
     
 }
+
+
+// 第三次做法，一种更加通用的方法
+class Solution {
+    private List<List<Integer>> ans = new ArrayList<>();
+    private List<Integer> path = new ArrayList<>();
+    private int[] nums;
+    private Set<Integer> set = new HashSet<>();
+    private int length;
+
+    public List<List<Integer>> permute(int[] nums) {
+        this.nums = nums;
+        dfs();
+        return ans;
+    }
+
+    private void dfs() {
+        if (length == nums.length) {
+            ans.add(new ArrayList<>(path));
+            return;
+        }
+        for (int num : nums) {
+            if (!set.contains(num)) {
+                path.add(num);
+                set.add(num);
+                length++;
+                dfs();
+                length--;
+                path.remove(path.size()-1);
+                set.remove(num);
+            }
+        }
+    }
+}
+
+// 第四次做法：将length方法作为参数传入，便于通用方法
+class Solution {
+    private List<List<Integer>> ans = new ArrayList<>();
+    private List<Integer> path = new ArrayList<>();
+    private int[] nums;
+    private Set<Integer> set = new HashSet<>();
+
+    public List<List<Integer>> permute(int[] nums) {
+        this.nums = nums;
+        dfs(0);
+        return ans;
+    }
+
+    private void dfs(int length) {
+        if (length == nums.length) {
+            ans.add(new ArrayList<>(path));
+            return;
+        }
+        for (int num : nums) {
+            if (!set.contains(num)) {
+                path.add(num);
+                set.add(num);
+                length++;
+                dfs(length);
+                length--;
+                path.remove(path.size()-1);
+                set.remove(num);
+            }
+        }
+    }
+}
