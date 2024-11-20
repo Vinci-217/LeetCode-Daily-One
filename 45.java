@@ -23,3 +23,23 @@ class Solution {
 
     }
 }
+
+// 第二次做法，修桥原理
+class Solution {
+    public int jump(int[] nums) {
+        int ans = 0;
+        int cur_max = 0;
+        int next_max = 0;
+        for(int i = 0;i<nums.length-1;i++){
+            next_max = Math.max(next_max,i+nums[i]);
+            if(i == cur_max){
+                cur_max = next_max;
+                ans++;
+            }
+            
+        }
+        return ans;
+    
+    
+    }
+}
