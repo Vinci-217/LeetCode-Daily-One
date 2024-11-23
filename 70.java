@@ -29,3 +29,30 @@ class Solution {
 //         return memo[i]=dfs(i-1)+dfs(i-2);
 //     }
 // }
+
+// 第二次递归做法，统一写法
+class Solution {
+    private int[] memo;
+    public int climbStairs(int n) {
+        memo = new int[n+1];
+        Arrays.fill(memo,-1);
+        return dfs(n);
+    }
+
+    private int dfs(int length){
+        if(length<=0){
+            return 0;
+        }
+        if(length==1){
+            return 1;
+        }
+        if(length==2){
+            return 2;
+        }
+        if(memo[length]!=-1){
+            return memo[length];
+        }
+        return memo[length] = dfs(length-1)+dfs(length-2);
+    }
+
+}
