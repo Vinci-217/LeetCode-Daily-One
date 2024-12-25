@@ -52,3 +52,26 @@ class Solution {
 
     }
 }
+
+// 第三次做法
+class Solution {
+    public boolean isValid(String s) {
+        if(s.length()%2!=0){
+            return false;
+        }
+        Map<Character,Character> map = new HashMap<>();
+        map.put(')','(');
+        map.put(']','[');
+        map.put('}','{');
+        Deque<Character> stack = new ArrayDeque<>();
+        for(char c : s.toCharArray()){
+            if(!map.containsKey(c)){ // 是左括号
+                stack.push(c);
+            }
+            else if(stack.isEmpty()||stack.pop()!=map.get(c)){ // 如果是右括号则自动弹出并跳过循环，不是右括号就返回false
+                return false;
+            }
+        }
+        return stack.isEmpty();
+    }
+}
