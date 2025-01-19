@@ -75,3 +75,20 @@ class Solution {
         return stack.isEmpty();
     }
 }
+
+// 第四次做法
+class Solution {
+    public boolean isValid(String s) {
+        if(s.length()%2!=0) return false;
+        Deque<Character> stack = new ArrayDeque<>();
+        Map<Character,Character> map = new HashMap<>();
+        map.put(')','(');
+        map.put(']','[');
+        map.put('}','{');
+        for(char c : s.toCharArray()){
+            if(!map.containsKey(c)) stack.push(c);
+            else if (stack.isEmpty()||!map.get(c).equals(stack.pop())) return false;
+        }
+        return stack.isEmpty();
+    }
+}
