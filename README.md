@@ -2,9 +2,9 @@
 
 ## 学习链接
 
-- <https://space.bilibili.com/206214/channel/collectiondetail?sid=842776&ctype=0>
-- <https://leetcode.cn/problemset/>
-- <https://www.programmercarl.com/>
+- [https://space.bilibili.com/206214/channel/collectiondetail?sid=842776&amp;ctype=0](https://space.bilibili.com/206214/channel/collectiondetail?sid=842776&ctype=0)
+- [https://leetcode.cn/problemset/](https://leetcode.cn/problemset/)
+- [https://www.programmercarl.com/](https://www.programmercarl.com/)
 
 ## 算法知识
 
@@ -30,7 +30,23 @@
 
 ### 回溯
 
+使用回溯的主要目的是判断需要枚举每个路径，例如需要枚举子集，需要枚举二叉树每个节点判断目标和，所以会造成2的n次方的时间复杂度。通常可以通过剪枝减少一部分杂余的时间
+
+回溯的使用场景：
+
+- **组合与排列问题（子集)**
+- **约束满足问题（找target类型**)
+- **路径搜索问题（二叉树的目标和**)
+
 ### 动态规划
+
+动态规划的是由于在某一定的条件下（区别一维和二维)每次计算都会有某些部分被重复计算了，所以要减少重复的计算。
+
+动态规划的使用场景：
+
+- **重叠子问题（公共子序列)**
+- **序列问题（最长递增子序列**)
+- **划分问题（恰好装满：分割等和自子集**)
 
 ### 贪心
 
